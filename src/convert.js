@@ -4,12 +4,33 @@ var glob = require("glob")
 require('dotenv').config()
 var path = require("path");
 
+txtFiles = glob.sync(`${process.env.OUTPUT_FOLDER}/**.txt`);
+txtFiles.forEach(deleteFile => {
+    if (fs.existsSync(deleteFile)) {
+        fs.unlinkSync(deleteFile);
+    }
+})
+
 readFiles = (folder) => {
     return glob.sync(`${folder}/**.xlsx`);
 }
 
+generateSequence = (value) => {
+    length = value.toString().length;
+    if (length === 4) {
+        return value;
+    } else if (length === 3) {
+        return `0${value}`;
+    } else {
+        throw Error("Sequence is neither 3 or 4 characters long");
+    }
+}
+
 buildTxtLine = (row) => {
-    return `${row[1]}          ${row[2]}                                           0${row[3]}                               BRFJ\r\n`;
+    delivery = row[1]
+    car = row[2]
+    sequence = generateSequence(row[3])
+    return `${delivery}          ${car}                                           ${sequence}                               BRFJ\r\n`;
 }
 
 convertToTxt = (file) => {
