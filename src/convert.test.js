@@ -29,6 +29,12 @@ test('exceptions', () => {
     expect(t).toThrow(Error);
 });
 
+test('dc', () => {
+    expected = 'BRFJ';
+    actual = convert.getDistributionCenter();
+    expect(actual).toBe(expected);
+});
+
 test('greater', () => {
     expected = '6845106078          90070846                                           0330                               BRFJ\r\n'
     actual = convert.buildTxtLine(['', '6845106078', '90070846', '330']);

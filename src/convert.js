@@ -15,6 +15,15 @@ readFiles = (folder) => {
     return glob.sync(`${folder}/**.xlsx`);
 }
 
+getDistributionCenter = () => {
+    dc = process.env.DISTRIBUTION_CENTER
+    if (dc.toString().length === 4) {
+        return dc;
+    } else {
+        throw Error(`Distribution center must be 4 characters long. Value was [${dc}].`);
+    }
+}
+
 generateSequence = (value) => {
     length = value.toString().length;
     if (length === 4) {
@@ -22,15 +31,16 @@ generateSequence = (value) => {
     } else if (length === 3) {
         return `0${value}`;
     } else {
-        throw Error("Sequence is neither 3 or 4 characters long");
+        throw Error(`Sequence is neither 3 or 4 characters long. Value was [${value}].`);
     }
 }
 
 buildTxtLine = (row) => {
-    delivery = row[1]
-    car = row[2]
-    sequence = generateSequence(row[3])
-    return `${delivery}          ${car}                                           ${sequence}                               BRFJ\r\n`;
+    delivery = row[1];
+    car = row[2];
+    sequence = generateSequence(row[3]);
+    dc = getDistributionCenter();
+    return `${delivery}          ${car}                                           ${sequence}                               ${dc}\r\n`;
 }
 
 convertToTxt = (file) => {
@@ -57,5 +67,6 @@ files.forEach(file => {
 
 module.exports = {
     generateSequence: generateSequence,
-    buildTxtLine: buildTxtLine
+    buildTxtLine: buildTxtLine,
+    getDistributionCenter: getDistributionCenter
 }
