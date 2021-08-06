@@ -54,3 +54,8 @@ files.forEach(file => {
         convertToTxt(file);
     })
 })
+
+module.exports = {
+    generateSequence: generateSequence,
+    buildTxtLine: buildTxtLine
+}
