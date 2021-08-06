@@ -1,19 +1,7 @@
 const fs = require('fs')
 const readXlsxFile = require('read-excel-file/node')
-var glob = require("glob")
-require('dotenv').config()
 var path = require("path");
-
-txtFiles = glob.sync(`${process.env.OUTPUT_FOLDER}/**.txt`);
-txtFiles.forEach(deleteFile => {
-    if (fs.existsSync(deleteFile)) {
-        fs.unlinkSync(deleteFile);
-    }
-})
-
-readFiles = (folder) => {
-    return glob.sync(`${folder}/**.xlsx`);
-}
+const fileops = require('./fileops');
 
 getDistributionCenter = () => {
     dc = process.env.DISTRIBUTION_CENTER
@@ -57,16 +45,19 @@ convertToTxt = (file) => {
     });
 }
 
-files = readFiles(process.env.INPUT_FOLDER);
-
-files.forEach(file => {
-    fs.readFile(file, 'utf8', (err, data) => {
-        convertToTxt(file);
+init = () => {
+    fileops.deleteAllTextFiles();
+    files = fileops.readAllExcelFiles();
+    files.forEach(file => {
+        fs.readFileSync(file, 'utf8', (err, data) => {
+            convertToTxt(file);
+        })
     })
-})
+}
 
 module.exports = {
     generateSequence: generateSequence,
     buildTxtLine: buildTxtLine,
-    getDistributionCenter: getDistributionCenter
+    getDistributionCenter: getDistributionCenter,
+    init: init
 }
