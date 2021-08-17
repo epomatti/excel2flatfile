@@ -2,7 +2,6 @@ const fs = require('fs')
 const readXlsxFile = require('read-excel-file/node')
 var path = require("path");
 const fileops = require('./fileops');
-const { clear } = require('console');
 
 getDistributionCenter = () => {
     dc = process.env.DISTRIBUTION_CENTER
