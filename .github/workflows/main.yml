@@ -17,12 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a multi-line script
+      - name: Run release script
         run: distribution/windows/release.ps1
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "c:/output/excel2csv.zip"
-          bodyFile: "body.md"
           token: ${{ secrets.GITHUB_TOKEN }}
