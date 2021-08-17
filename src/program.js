@@ -2,6 +2,7 @@ const fs = require('fs')
 const readXlsxFile = require('read-excel-file/node')
 var path = require("path");
 const fileops = require('./fileops');
+const { clear } = require('console');
 
 getDistributionCenter = () => {
     dc = process.env.DISTRIBUTION_CENTER
@@ -13,14 +14,13 @@ getDistributionCenter = () => {
 }
 
 generateSequence = (value) => {
-    length = value.toString().length;
-    if (length === 4) {
-        return value;
-    } else if (length === 3) {
-        return `0${value}`;
-    } else {
-        throw Error(`Sequence is neither 3 or 4 characters long. Value was [${value}].`);
+    minLength = 1;
+    maxLength = 4;
+    actualLength = value.toString().length;
+    if (actualLength > maxLength || actualLength < minLength) {
+        throw Error(`Sequence needs to be greater ${minLength} and maximum ${maxLength} characters long. Value was [${value}].`);
     }
+    return value.padStart(maxLength, "0");
 }
 
 buildTxtLine = (row) => {
@@ -49,9 +49,7 @@ init = () => {
     fileops.deleteAllTextFiles();
     files = fileops.readAllExcelFiles();
     files.forEach(file => {
-        fs.readFileSync(file, 'utf8', (err, data) => {
-            convertToTxt(file);
-        })
+        convertToTxt(file);
     })
 }
 

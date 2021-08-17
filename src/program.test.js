@@ -3,13 +3,13 @@ const program = require('./program');
 // Loads test .env
 require('dotenv').config({ path: 'test/test.env' })
 
-test('shorter', () => {
-    expected = '0123';
-    actual = program.generateSequence('123');
+test('minimum', () => {
+    expected = '0001';
+    actual = program.generateSequence('1');
     expect(actual).toBe(expected);
 });
 
-test('greater', () => {
+test('max', () => {
     expected = '1234';
     actual = program.generateSequence('1234');
     expect(actual).toBe(expected);
@@ -22,7 +22,7 @@ test('exceptions', () => {
     expect(t).toThrow(Error);
 
     t = () => {
-        program.generateSequence('45');
+        program.generateSequence('');
     }
     expect(t).toThrow(Error);
 
