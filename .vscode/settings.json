@@ -1,5 +1,11 @@
 {
     "cSpell.words": [
         "fileops"
+    ],
+    "cSpell.ignoreWords": [
+        "action",
+        "ncipollo",
+        "release",
+        "v"
     ]
 }
