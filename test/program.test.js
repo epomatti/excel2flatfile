@@ -1,7 +1,7 @@
-const program = require('./program');
+const program = require('../src/program');
 
 // Loads test .env
-require('dotenv').config({ path: 'test/test.env' })
+require('dotenv').config({ path: './test/test.env' })
 
 test('minimum', () => {
     expected = '0001';
