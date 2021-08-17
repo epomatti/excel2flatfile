@@ -20,7 +20,7 @@ generateSequence = (value) => {
     if (actualLength > maxLength || actualLength < minLength) {
         throw Error(`Sequence needs to be greater ${minLength} and maximum ${maxLength} characters long. Value was [${value}].`);
     }
-    return value.padStart(maxLength, "0");
+    return value.toString().padStart(maxLength, "0");
 }
 
 buildTxtLine = (row) => {
