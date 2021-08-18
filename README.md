@@ -16,6 +16,6 @@ npm test
 ## Distribution
 
 1. Run [release.pl1](distribution/windows/release.ps1) file on a Windows machine.
-2. Configure `.env` file. Distribution Center must be set.
+2. Configure `.env` file. You must set the `DISTRIBUTION_CENTER` variable.
 
-A workspace is configure for automatic release.
+A workspace is configured for automatic release.
