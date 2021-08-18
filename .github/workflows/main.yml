@@ -1,14 +1,6 @@
-name: CI
+name: Release
 
-on:
-  push:
-    tags:
-      - "*"
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   build:
@@ -25,3 +17,4 @@ jobs:
         with:
           artifacts: "c:/output/excel2csv.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v1.0
