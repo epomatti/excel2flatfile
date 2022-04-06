@@ -1,6 +1,10 @@
-# Excel to Flat-file 
+# Excel to Flat-file
 
-Converts an Excel file to a flat file.
+[![Release](https://github.com/epomatti/excel-to-flatfile/actions/workflows/main.yml/badge.svg)](https://github.com/epomatti/excel-to-flatfile/actions/workflows/main.yml)
+
+A embedded Node App that converts an Excel file to a flat file.
+
+I used this example to configure auto-publish to GitHub Packages services.
 
 ## Local development / Testing
 
@@ -9,8 +13,10 @@ mkdir .tmp
 mv test.env .env
 ```
 
+Testing
+
 ```
-npm test
+yarn test
 ```
 
 ## Distribution

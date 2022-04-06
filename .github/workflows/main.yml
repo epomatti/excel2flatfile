@@ -7,7 +7,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run release script
         run: distribution/windows/release.ps1
@@ -17,4 +17,4 @@ jobs:
         with:
           artifacts: "c:/output/excel2csv.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v1.0
+          tag: v1.1
